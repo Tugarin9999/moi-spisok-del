@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Мой Список Дел</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app">
+  <header>
+    <h1>Мой Список Дел</h1>
+    <p class="subtitle">Органайзер повседневных задач</p>
+  </header>
+
+  <section id="intro">
+    <p>Добавляйте дела, отмечайте выполненные и удаляйте ненужное.</p>
+  </section>
+
+  <section id="add-section">
+    <h2>Добавить задачу</h2>
+    <div id="addRow">
+      <input type="text" id="taskInput" placeholder="Введите новую задачу...">
+      <button id="addBtn">Добавить</button>
+    </div>
+  </section>
+
+  <section id="list-section">
+    <h2>Список задач</h2>
+    <ul id="taskList"></ul>
+  </section>
+
+  <footer id="footer">
+    <p>Всего задач: <span id="taskCount">0</span> | Выполнено: <span id="doneCount">0</span></p>
+  </footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

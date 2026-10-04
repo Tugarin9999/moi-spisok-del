@@ -1,0 +1,256 @@
+:root {
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-ring: rgba(37, 99, 235, 0.18);
+  --bg: #eef2f7;
+  --surface: #ffffff;
+  --surface-soft: #f8fafc;
+  --text: #0f172a;
+  --text-muted: #64748b;
+  --text-faint: #94a3b8;
+  --border: #e2e8f0;
+  --danger: #dc2626;
+  --radius: 12px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 24px 16px;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+}
+
+#app {
+  width: 480px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 28px 24px 20px;
+  background: var(--surface);
+  border-radius: 18px;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+}
+
+/* Шапка */
+
+header {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+section {
+  margin-bottom: 20px;
+}
+
+section h2 {
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-faint);
+}
+
+#intro p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* Ввод новой задачи */
+
+#addRow {
+  display: flex;
+  gap: 10px;
+}
+
+#taskInput {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 14px;
+  font: inherit;
+  font-size: 14px;
+  color: var(--text);
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+#taskInput::placeholder {
+  color: var(--text-faint);
+}
+
+#taskInput:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-ring);
+}
+
+#addBtn {
+  flex: 0 0 auto;
+  padding: 12px 22px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  white-space: nowrap;
+  background: var(--accent);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+#addBtn:hover {
+  background: var(--accent-hover);
+}
+
+#addBtn:active {
+  transform: translateY(1px);
+}
+
+#addBtn:focus-visible {
+  outline: 3px solid var(--accent-ring);
+  outline-offset: 2px;
+}
+
+/* Список задач */
+
+#list-section {
+  padding: 16px;
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+#taskList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#taskList li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  font-size: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  transition: border-color 0.15s ease;
+}
+
+#taskList li:hover {
+  border-color: #cbd5e1;
+}
+
+#taskList input[type="checkbox"] {
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.task-text {
+  flex: 1;
+  min-width: 0;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+#taskList li.done {
+  background: #f1f5f9;
+}
+
+#taskList li.done .task-text {
+  color: var(--text-faint);
+}
+
+#taskList li button {
+  flex: 0 0 auto;
+  margin-left: auto;
+  padding: 6px 10px;
+  font: inherit;
+  font-size: 12px;
+  text-transform: capitalize;
+  color: var(--text-faint);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+
+#taskList li button:hover {
+  color: var(--danger);
+  background: #fef2f2;
+  border-color: #fecaca;
+}
+
+#taskList li button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* Пустое состояние: разметка внутри #taskList пересоздаётся скриптом,
+   поэтому заглушка делается только через :empty */
+
+#taskList:empty {
+  display: block;
+  padding: 22px 16px;
+  font-size: 13px;
+  color: var(--text-faint);
+  text-align: center;
+  border: 1px dashed #cbd5e1;
+  border-radius: var(--radius);
+}
+
+#taskList:empty::before {
+  content: "Здесь пока пусто — добавьте первую задачу.";
+}
+
+/* Счётчики */
+
+#footer {
+  padding-top: 14px;
+  font-size: 13px;
+  color: var(--text-muted);
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+#footer p {
+  margin: 0;
+}
+
+#footer span {
+  font-weight: 600;
+  color: var(--accent);
+}
